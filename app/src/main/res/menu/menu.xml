@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/normal1"
+        android:icon="@drawable/ic_brightness_5_black_24dp"
+        android:title="A very cool" />
+    <item
+        android:id="@+id/normal2"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="Menu" />
+
+    <item
+        android:id="@+id/normal3"
+        android:title="For Everyone" />
+
+    <item
+        android:id="@+id/normal4"
+        android:title="Thanks to Chrome!" />
+
+</menu>
