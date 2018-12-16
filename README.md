@@ -5,7 +5,7 @@
 
 ------
 
-###### Note: All credits goes to [**@DeweyReed**](https://github.com/DeweyReed) for his work on [Chrome Menu](https://github.com/DeweyReed/ChromeMenu). All i've done is migrate it back from ***Android X***, because of some issues i was encountering while using it on a pure Android Java project.
+###### Note: All credits goes to [**@DeweyReed**](https://github.com/DeweyReed) for his work on [Chrome Menu](https://github.com/DeweyReed/ChromeMenu). All i've done is migrate it back from ***Android X***, because of some issues i was encountering while using it on a my projects.
 
 ------
 
