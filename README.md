@@ -1,6 +1,6 @@
 # ChromeMenu
 
-[![Download](https://api.bintray.com/packages/reedreed/maven/chrome-menu/images/download.svg)](https://bintray.com/reedreed/maven/chrome-menu/_latestVersion)
+[![Download](https://api.bintray.com/packages/kishannareshpal/maven/chromemenu/images/download.svg)](https://bintray.com/reedreed/maven/chrome-menu/_latestVersion)
 [![API](https://img.shields.io/badge/API-17%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=17)
 
 ------
