@@ -5,7 +5,7 @@
 
 ------
 
-###### Note: All credits goes to [**@DeweyReed**](https://github.com/DeweyReed) for his work on [Chrome Menu](https://github.com/DeweyReed/ChromeMenu). All i've done is migrate it back from ***Android X***, because of some issues i was encountering while using it on a my projects.
+###### Note: All credits goes to [**@DeweyReed**](https://github.com/DeweyReed) for his work on [Chrome Menu](https://github.com/DeweyReed/ChromeMenu). All i've done is migrate it back from ***Android X***, because of some issues i was encountering while using it on my project.
 
 ------
 
@@ -23,40 +23,44 @@ I love this design. It significantly improves the efficiency of using an app. So
 
 1. **Install dependency**
 
-    `implementation 'com.kishannareshpal:chrome-menu:1.0.0'`
+   `implementation 'com.kishannareshpal:chrome-menu:1.0.0'`
 
-1. **Usage: Set up touch listener**
-##### Kotlin
-    ```Kotlin
-    val handler = AppMenuHandler(activity, listener, R.menu.menu)
-    val helper = AppMenuButtonHelper(handler)
-    btn.setOnTouchListener(helper)
-    ```
+2. **Usage: Set up touch listener**
 
-##### Java
-    ```Java
-    AppMenuHandler handler = new AppMenuHandler(activity, listener, R.menu.menu);
-    AppMenuButtonHelper helper = new AppMenuButtonHelper(handler);
-    btn.setOnTouchListener(helper);
-    ```
+   a. **Kotlin**
 
-    `listener` is an [AppMenuPropertiesDelegate](https://github.com/DeweyReed/ChromeMenu/blob/master/library/src/main/java/xyz/aprildown/chromemenu/AppMenuPropertiesDelegate.java#L15) interface or use its abstract version [AbstractAppMenuPropertiesDelegate()](https://github.com/DeweyReed/ChromeMenu/blob/master/library/src/main/java/xyz/aprildown/chromemenu/AbstractAppMenuPropertiesDelegate.java#L12)
+   ```Kotlin
+   val handler = AppMenuHandler(activity, listener, R.menu.menu)
+   val helper = AppMenuButtonHelper(handler)
+   btn.setOnTouchListener(helper)
+   ```
 
-1. **Handle click events**
+   b. *Java**
 
-    All click events are handled in the listener's `onMenuItemClicked`
+   ```java
+   AppMenuHandler handler = new AppMenuHandler(activity, listener, R.menu.menu);
+   AppMenuButtonHelper helper = new AppMenuButtonHelper(handler);
+   btn.setOnTouchListener(helper);
+   ```
 
+
+
+   `listener` is an [AppMenuPropertiesDelegate](https://github.com/DeweyReed/ChromeMenu/blob/master/library/src/main/java/xyz/aprildown/chromemenu/AppMenuPropertiesDelegate.java#L15) interface or use its abstract version [AbstractAppMenuPropertiesDelegate()](https://github.com/DeweyReed/ChromeMenu/blob/master/library/src/main/java/xyz/aprildown/chromemenu/AbstractAppMenuPropertiesDelegate.java#L12)
+
+3. **Handle click events**
+
+   All click events are handled in the listener's `onMenuItemClicked`
 
 ## More Usage
 
 - Change menu width
 
-    Add this line to `dimens.xml`:
+  Add this line to `dimens.xml`:
 
-    ```XML
-    <!-- 256dp is the original width -->
-    <dimen name="menu_width">258dp</dimen>
-    ```
+  ```XML
+  <!-- 256dp is the original width -->
+  <dimen name="menu_width">258dp</dimen>
+  ```
 
 
 
