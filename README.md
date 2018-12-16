@@ -27,7 +27,7 @@ I love this design. It significantly improves the efficiency of using an app. So
 
 2. **Usage: Set up touch listener**
 
-   a. **Kotlin**
+   a) **Kotlin**
 
    ```Kotlin
    val handler = AppMenuHandler(activity, listener, R.menu.menu)
@@ -35,7 +35,7 @@ I love this design. It significantly improves the efficiency of using an app. So
    btn.setOnTouchListener(helper)
    ```
 
-   b. *Java**
+   b) **Java**
 
    ```java
    AppMenuHandler handler = new AppMenuHandler(activity, listener, R.menu.menu);
