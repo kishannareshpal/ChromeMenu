@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn_simple = findViewById(R.id.btn_simple);
 
         // Setup Component
-        AppMenuHandler appMenuHandler = new AppMenuHandler(this, new AbstractAppMenuPropertiesDelegate(), R.menu.menu);
+        AppMenuHandler appMenuHandler = new AppMenuHandler(this, new DownloadAppMenuDelegate(), R.menu.menu);
         AppMenuButtonHelper appMenuButtonHelper = new AppMenuButtonHelper(appMenuHandler);
         btn_simple.setOnTouchListener(appMenuButtonHelper);
     }

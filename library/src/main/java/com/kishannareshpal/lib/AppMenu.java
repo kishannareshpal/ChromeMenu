@@ -309,6 +309,7 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
 
         mPopup.setWidth(popupWidth);
 
+
         mIsByPermanentButton = false;
 
         // Extract visible items from the Menu.

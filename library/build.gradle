@@ -5,7 +5,7 @@ apply plugin: 'com.novoda.bintray-release'
 publish {
     def groupProjectID = 'com.kishannareshpal'
     def artifactProjectID = 'chromemenu'
-    def publishVersionID = '1.0.0'
+    def publishVersionID = '1.1'
 
     userOrg = 'kishannareshpal'
     repoName = 'maven'
@@ -26,7 +26,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
