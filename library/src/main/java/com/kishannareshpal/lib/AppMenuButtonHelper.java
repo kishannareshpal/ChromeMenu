@@ -126,6 +126,10 @@ public class AppMenuButtonHelper extends AccessibilityDelegate implements OnTouc
     public boolean onTouch(View view, MotionEvent event) {
         boolean isTouchEventConsumed = false;
 
+        float touchPositionX = event.getX();
+        float touchPositionY = event.getY();
+        AppMenu.setTouchedPosition(touchPositionX, touchPositionY);
+
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 if (!mShowMenuOnUp) {
@@ -152,7 +156,8 @@ public class AppMenuButtonHelper extends AccessibilityDelegate implements OnTouc
         // dragging correctly.
         AppMenuDragHelper dragHelper = mMenuHandler.getAppMenuDragHelper();
         if (dragHelper != null) {
-            isTouchEventConsumed |= dragHelper.handleDragging(event, view);
+//            isTouchEventConsumed = isTouchEventConsumed | dragHelper.handleDragging(event, view, this);
+            isTouchEventConsumed |= dragHelper.handleDragging(event, view, false);
         }
         return isTouchEventConsumed;
     }

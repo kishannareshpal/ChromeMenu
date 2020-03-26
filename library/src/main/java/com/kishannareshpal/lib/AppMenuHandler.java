@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class AppMenuHandler {
     private final ArrayList<AppMenuObserver> mObservers;
-    private final int mMenuResourceId;
+    private int mMenuResourceId;
     //    private final View mHardwareButtonMenuAnchor;
     private final AppMenuPropertiesDelegate mDelegate;
     private final Activity mActivity;
@@ -37,6 +37,7 @@ public class AppMenuHandler {
      * opened.
      */
     private Integer mHighlightMenuId;
+
 
     /**
      * Constructs an AppMenuHandler object.
@@ -63,6 +64,34 @@ public class AppMenuHandler {
 //        assert mHardwareButtonMenuAnchor != null
 //                : "Using AppMenu requires to have menu_anchor_stub view";
     }
+
+
+    /**
+     **** Added by Kishan Nareshpal Jadav
+     * Constructs an AppMenuHandler object.
+     *
+     * @param activity       Activity that is using the AppMenu.
+     * @param delegate       Delegate used to check the desired AppMenu properties on show.
+     */
+    public AppMenuHandler(Activity activity, AppMenuPropertiesDelegate delegate, Menu menu) {
+        mActivity = activity;
+        mDelegate = delegate;
+        mObservers = new ArrayList<>();
+        mMenu = menu;
+
+//    <!-- This empty view is used as the anchor for custom menu -->
+//    <View
+//        android:id="@+id/menu_anchor_stub"
+//        android:layout_width="0px"
+//        android:layout_height="0px"
+//        android:layout_gravity="bottom|start"
+//        />
+//        mHardwareButtonMenuAnchor = activity.findViewById(R.id.menu_anchor_stub);
+//        assert mHardwareButtonMenuAnchor != null
+//                : "Using AppMenu requires to have menu_anchor_stub view";
+    }
+
+
 
     /**
      * Notifies the menu that the contents of the menu item specified by {@code menuRowId} have

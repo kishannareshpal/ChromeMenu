@@ -12,8 +12,10 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.IntDef;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.ImageViewCompat;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.content.res.AppCompatResources;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -29,6 +31,8 @@ import android.widget.TextView;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
+
+import static com.kishannareshpal.lib.AppMenuThemeConfiguration.ThemeModes.NIGHT;
 
 /**
  * ListAdapter to customize the view of items in the list.
@@ -252,6 +256,8 @@ class AppMenuAdapter extends BaseAdapter {
                     holder = new StandardMenuItemViewHolder();
                     convertView = mInflater.inflate(R.layout.cm_menu_item, parent, false);
                     holder.text = convertView.findViewById(R.id.menu_item_text);
+                    TextViewCompat.setTextAppearance(holder.text, AppMenuThemeConfiguration.getTheme() == NIGHT ? R.style.CmWhiteTitle1 : R.style.CmBlackTitle1);
+
                     holder.image = convertView.findViewById(R.id.menu_item_icon);
                     convertView.setTag(holder);
                     convertView.setTag(R.id.cm_menu_item_enter_anim_id,

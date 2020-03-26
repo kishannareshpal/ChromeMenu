@@ -35,6 +35,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kishannareshpal.lib.AppMenuThemeConfiguration.ThemeModes.NIGHT;
+
 /**
  * Shows a popup of menuitems anchored to a host view. When a item is selected we call
  * AppMenuPropertiesDelegate.onMenuItemClicked with the appropriate MenuItem.
@@ -59,6 +61,8 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
     private AppMenuHandler mHandler;
     private boolean mIsByPermanentButton;
     private AnimatorSet mMenuItemEnterAnimator;
+    private static int touchedPositionX;
+    private static int touchedPositionY;
     /*private AnimatorListener mAnimationHistogramRecorder = AnimationFrameTimeHistogram
             .getAnimatorRecorder("WrenchMenu.OpeningAnimationFrameTimes");*/
 
@@ -168,6 +172,22 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
         mListView.getAdapter().getView(index, view, mListView);
     }
 
+
+    /**
+     * Added by Kishan Nareshpal Jadav
+     *
+     * Sets the position of where the user touched on the anchoredView,
+     * so the view is anchored properly relative to that position.
+     * @param x xPosition
+     * @param y yPosition
+     */
+    public static void setTouchedPosition(float x, float y){
+        touchedPositionX = (int) x;
+        touchedPositionY = (int) y;
+
+    }
+
+
     private int[] getPopupPosition(int screenRotation, Rect appRect, Rect padding, View anchorView,
                                    int popupWidth, int popupHeight, boolean isAnchorAtBottom) {
         anchorView.getLocationInWindow(mTempLocation);
@@ -182,10 +202,12 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
             switch (screenRotation) {
                 case Surface.ROTATION_0:
                 case Surface.ROTATION_180:
-                    horizontalOffset += (appRect.width() - popupWidth) / 2;
+//                    horizontalOffset += (appRect.width() - popupWidth) / 2;
+                    horizontalOffset += touchedPositionX/2;
                     break;
                 case Surface.ROTATION_90:
-                    horizontalOffset += appRect.width() - popupWidth;
+//                    horizontalOffset += appRect.width() - popupWidth;
+                    horizontalOffset += touchedPositionX;
                     break;
                 case Surface.ROTATION_270:
                     break;
@@ -197,7 +219,9 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
             // padding of the background.
             offsets[1] = -padding.bottom;
         } else {
-            offsets[1] = -mNegativeSoftwareVerticalOffset;
+//            offsets[1] = -mNegativeSoftwareVerticalOffset;
+            offsets[1] = touchedPositionY;
+
 
             // If the anchor is at the bottom of the screen, align the popup with the bottom of the
             // anchor. The anchor may not be fully visible, so
@@ -212,7 +236,13 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
             }
 
             if (!ApiCompatibilityUtils.isLayoutRtl(anchorView.getRootView())) {
-                offsets[0] = anchorView.getWidth() - popupWidth;
+                offsets[0] = touchedPositionX;
+
+                // If you want it to be shown on the far RIGHT corner of the anchoredView, uncomment the line bellow
+                // offsets[0] = anchorView.getWidth() - popupWidth;
+
+                // If you want it to be shown on the far LEFT corner of the anchoredView, uncomment the line bellow
+                // offsets[0] = 0;
             }
         }
 
@@ -294,7 +324,7 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
         // Need to explicitly set the background here.  Relying on it being set in the style caused
         // an incorrectly drawn background.
         mPopup.setBackgroundDrawable(
-                ApiCompatibilityUtils.getDrawable(context.getResources(), R.drawable.cm_popup_bg));
+                ApiCompatibilityUtils.getDrawable(context.getResources(), AppMenuThemeConfiguration.getTheme() == NIGHT ? R.drawable.cm_popup_night_bg : R.drawable.cm_popup_bg));
         mPopup.setAnimationStyle(
                 showFromBottom ? R.style.CmOverflowMenuAnimBottom : R.style.CmOverflowMenuAnim);
 
@@ -308,7 +338,6 @@ public class AppMenu implements OnItemClickListener, OnKeyListener {
         int popupWidth = menuWidth + bgPadding.left + bgPadding.right;
 
         mPopup.setWidth(popupWidth);
-
 
         mIsByPermanentButton = false;
 

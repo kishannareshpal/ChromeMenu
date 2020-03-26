@@ -1,11 +1,51 @@
 # ChromeMenu
 
-[![Download](https://api.bintray.com/packages/kishannareshpal/maven/chromemenu/images/download.svg)](https://bintray.com/reedreed/maven/chrome-menu/_latestVersion)
+[![Download](https://api.bintray.com/packages/kishannareshpal/maven/chromemenu/images/download.svg)](https://api.bintray.com/packages/kishannareshpal/maven/chromemenu/images/download.svg)
 [![API](https://img.shields.io/badge/API-17%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=17)
 
 ------
 
-###### Note: All credits goes to [**@DeweyReed**](https://github.com/DeweyReed) for his work on [Chrome Menu](https://github.com/DeweyReed/ChromeMenu). All i've done is migrate it back from ***Android X***, because of some issues i was encountering while using it on my project.
+#### Note: All credits goes to [**@DeweyReed**](https://github.com/DeweyReed) for his original work on [Chrome Menu](https://github.com/DeweyReed/ChromeMenu) port.*
+
+### * This is just a customized fork for use in one of my project. If you want to use it, you may, but i won't document any further.
+
+##### Changes i've made:
+
+- Migrate it back from ***AndroidX Namespace***, because of some issues i was encountering while using it on my project.
+
+- Added NightMode theming, which can be applied by using:
+
+- ````java
+  // add this line before any ChromeMenu setup.
+  AppMenuThemeConfiguration.setTheme(ThemeMode.NIGHT);
+  ````
+
+- Changed the controlColorHighlight color to a lighter one, to match my project.
+
+  ```xml
+  <color name="cm_control_highlight_color">#bdbdbd</color>
+  ```
+
+- Added an alternate AppMenuHandler constructor which takes an instance of Menu as a third argument, as supposed as the original's that takes a Menu Resource Id. Enabling us to create a menu dynamically, and not by definition via XML.
+
+  ```java
+  // Using menu resource id (XML)
+  public AppMenuHandler(Activity activity, AppMenuPropertiesDelegate delegate,
+                            int menuResourceId)
+      
+  // Using OnPrepareMenuListener, you will get a PopupMenu, on which you may get it's menu by calling `PopupMenu.getMenu()` and then you must return it (but after adding your desred menuItems, of course).
+  // You may find this interesting if you want to know how to create a menu programmatically: https://stackoverflow.com/a/24729407/7493547
+  public AppMenuHandler(Activity activity, AppMenuPropertiesDelegate delegate,
+                            OnPrepareMenuListener onPrepare)
+  ```
+
+- Added support for Long Click. If you want to open the menu on long click, you may use this Helper:
+
+  ```java
+  // view :: The view that the starts the menu;
+  // menuHandler :: an instance of AppMenuHandler;
+  public AppMenuButtonHelperLongClick(View handlerView, AppMenuHandler menuHandler);
+  ```
 
 ------
 
@@ -23,7 +63,7 @@ I love this design. It significantly improves the efficiency of using an app. So
 
 1. **Install dependency**
 
-   `implementation 'com.kishannareshpal:chrome-menu:1.0.0'`
+   `implementation 'com.kishannareshpal:chrome-menu:1.5'`
 
 2. **Usage: Set up touch listener**
 

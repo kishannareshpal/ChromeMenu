@@ -126,9 +126,10 @@ class AppMenuDragHelper {
      *
      * @param event  Touch event to be processed.
      * @param button Button that received the touch event.
+     * @param isLongClick Whether the app menu was brought up by longClick or not.
      * @return Whether the event is handled.
      */
-    boolean handleDragging(MotionEvent event, View button) {
+    boolean handleDragging(MotionEvent event, View button, boolean isLongClick) {
         if (!mAppMenu.isShowing() || !mDragScrolling.isRunning()) return false;
 
         // We will only use the screen space coordinate (rawX, rawY) to reduce confusion.
@@ -147,7 +148,8 @@ class AppMenuDragHelper {
         mLastTouchY = rawY;
         mMenuButtonScreenCenterY = getScreenVisibleRect(button).centerY();
 
-        if (eventActionMasked == MotionEvent.ACTION_CANCEL) {
+        // Dissmiss app menu when the user touches outside
+        if (!isLongClick && eventActionMasked == MotionEvent.ACTION_CANCEL) {
             mAppMenu.dismiss();
             return true;
         }/* else if (eventActionMasked == MotionEvent.ACTION_UP) {
@@ -183,7 +185,9 @@ class AppMenuDragHelper {
 
         if (eventActionMasked == MotionEvent.ACTION_UP && !didPerformClick) {
             /*RecordUserAction.record("MobileUsingMenuBySwButtonDragging");*/
-            mAppMenu.dismiss();
+            if (!isLongClick){
+                mAppMenu.dismiss();
+            }
         } else if (eventActionMasked == MotionEvent.ACTION_MOVE) {
             // Auto scrolling on the top or the bottom of the listView.
             if (listView.getHeight() > 0) {
@@ -293,7 +297,7 @@ class AppMenuDragHelper {
 
     // Internally used action constants for dragging.
     @IntDef({ItemAction.HIGHLIGHT, ItemAction.PERFORM, ItemAction.CLEAR_HIGHLIGHT_ALL})
-    @Retention(RetentionPolicy.SOURCE)
+    @Retention(RetentionPolicy.CLASS)
     private @interface ItemAction {
         int HIGHLIGHT = 0;
         int PERFORM = 1;

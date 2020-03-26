@@ -19,4 +19,7 @@
     <color name="cm_control_normal_color">@color/cm_modern_grey_700</color>
     <color name="cm_light_active_color">@color/cm_modern_blue_600</color>
     <color name="cm_control_highlight_color">@color/cm_modern_grey_400_alpha_38</color>
+
+    <color name="cm_white_1000">#FFFFFF</color>
+    <color name="cm_black_1000">#000000</color>
 </resources>
